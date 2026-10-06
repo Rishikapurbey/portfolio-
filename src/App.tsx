@@ -133,6 +133,17 @@ export default function App() {
                 </div>
               ))}
             </div>
+            <h3 className="ch-subhead">Notable contributions</h3>
+            <div className="ch-highlights">
+              {openSource.highlights.map((h) => (
+                <a key={h.pr} className="ch-highlight" href={h.pr} target="_blank" rel="noreferrer">
+                  <span className="ch-highlight__kind">{h.kind}</span>
+                  <p>{h.text}</p>
+                  <span className="ch-highlight__ref">{h.project} #{h.pr.split('/').pop()} ↗</span>
+                </a>
+              ))}
+            </div>
+            <h3 className="ch-subhead">Merged PRs by project</h3>
             <ul className="ch-repos">
               {openSource.repos.map((r) => (
                 <li key={r.name}>

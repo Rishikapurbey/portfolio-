@@ -99,6 +99,26 @@ export const openSource = {
     { name: 'LinkID', prs: 5 },
   ],
   remainder: '9 more PRs across 9 other projects',
+  highlights: [
+    {
+      kind: 'Security',
+      text: 'Closed an email-verification bypass: credential signups were auto-verified, so anyone could claim an email they didn’t own. Built a token-based verification flow.',
+      project: 'LinkID',
+      pr: 'https://github.com/vishnukothakapu/linkid/pull/329',
+    },
+    {
+      kind: 'Reliability',
+      text: 'Capped links per user with an atomic check inside a Prisma transaction, so concurrent requests can’t race past the limit.',
+      project: 'LinkID',
+      pr: 'https://github.com/vishnukothakapu/linkid/pull/343',
+    },
+    {
+      kind: 'Performance',
+      text: 'Removed a database query that ran on every authenticated request by fixing an undefined-vs-null check in the JWT callback.',
+      project: 'LinkID',
+      pr: 'https://github.com/vishnukothakapu/linkid/pull/342',
+    },
+  ],
 }
 
 export const skills: { group: string; items: string[] }[] = [
