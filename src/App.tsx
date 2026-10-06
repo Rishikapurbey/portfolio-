@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { about, education, experience, openSource, profile, projects, skills } from './data/profile'
+import { about, contacts, education, experience, openSource, profile, projects, skills } from './data/profile'
 import { useReveal } from './hooks/useReveal'
 import { Board } from './components/Board'
 
@@ -9,7 +9,8 @@ const SECTIONS = [
   { id: 'ch-castle', move: '3. O-O', name: 'Castled' },
   { id: 'ch-middlegame', move: '4. Rd1', name: 'Middlegame' },
   { id: 'ch-pieces', move: '5. Qe2', name: 'The Pieces' },
-  { id: 'ch-endgame', move: '6. ?', name: 'Your Move' },
+  { id: 'ch-record', move: '6. Bb3', name: 'Game Record' },
+  { id: 'ch-endgame', move: '7. ?', name: 'Your Move' },
 ]
 
 const PIECE_FOR_GROUP = ['♛︎', '♜︎', '♝︎']
@@ -51,7 +52,10 @@ export default function App() {
           <p className="ch-hero__tagline">
             Every move <em>considered</em>. {profile.tagline}
           </p>
-          <a className="ch-btn" href="#ch-opening">Start the game ↓</a>
+          <div className="ch-hero__actions">
+            <a className="ch-btn" href="#ch-opening">Start the game ↓</a>
+            <a className="ch-btn ch-btn--ghost" href="#ch-record">Résumé</a>
+          </div>
         </div>
         <Board />
       </header>
@@ -151,12 +155,39 @@ export default function App() {
           </Section>
 
           <Section index={5}>
-            <p className="ch-endgame">The board is set. It’s your move.</p>
-            <a className="ch-email" href={`mailto:${profile.email}`}>{profile.email}</a>
-            <div className="ch-project__links">
-              <a className="ch-btn" href={`mailto:${profile.email}`}>Send a message</a>
-              <a className="ch-btn ch-btn--ghost" href={profile.links.github} target="_blank" rel="noreferrer">GitHub</a>
+            <div className="ch-record">
+              <div className="ch-record__sheet" aria-hidden="true">
+                <span className="ch-record__name">{profile.name}</span>
+                <span className="ch-record__role">{profile.role}</span>
+                {Array.from({ length: 9 }, (_, i) => <i key={i} />)}
+              </div>
+              <div className="ch-record__text">
+                <p>The full game, move by move: experience, projects, education and achievements on one page.</p>
+                {profile.resume ? (
+                  <div className="ch-project__links">
+                    <a className="ch-btn" href={profile.resume} download>Download résumé (PDF)</a>
+                    <a className="ch-btn ch-btn--ghost" href={profile.resume} target="_blank" rel="noreferrer">View in browser</a>
+                  </div>
+                ) : (
+                  <span className="ch-btn ch-btn--disabled" aria-disabled="true">Résumé PDF coming soon</span>
+                )}
+              </div>
             </div>
+          </Section>
+
+          <Section index={6}>
+            <p className="ch-endgame">The board is set. It’s your move.</p>
+            <ul className="ch-contacts">
+              {contacts.map((c) => (
+                <li key={c.label}>
+                  <a href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+                    <span className="ch-contacts__label">{c.label}</span>
+                    <span className="ch-contacts__value">{c.value}</span>
+                    <span className="ch-contacts__arrow" aria-hidden="true">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </Section>
         </main>
       </div>

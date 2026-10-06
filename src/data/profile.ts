@@ -8,7 +8,14 @@ export const profile = {
   links: {
     github: 'https://github.com/Rishikapurbey',
   },
+  // Drop the PDF into public/ and set its path here, e.g. '/Rishika-Purbey-Resume.pdf'.
+  resume: null as string | null,
 }
+
+export const contacts = [
+  { label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
+  { label: 'GitHub', value: 'github.com/Rishikapurbey', href: profile.links.github },
+]
 
 export const about = {
   paragraphs: [
