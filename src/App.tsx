@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { about, contacts, education, experience, openSource, profile, projects, skills } from './data/profile'
 import { useReveal } from './hooks/useReveal'
 import { Board } from './components/Board'
+import { MobileNav } from './components/MobileNav'
 
 const SECTIONS = [
   { id: 'ch-opening', move: '1. e4', name: 'The Opening' },
@@ -208,6 +209,8 @@ export default function App() {
           </Section>
         </main>
       </div>
+
+      <MobileNav sections={SECTIONS} current={current} />
 
       <footer className="ch-footer">1–0 · {profile.name}</footer>
     </div>
