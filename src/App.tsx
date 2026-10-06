@@ -13,7 +13,7 @@ const SECTIONS = [
   { id: 'ch-endgame', move: '7. ?', name: 'Your Move' },
 ]
 
-const PIECE_FOR_GROUP = ['♛︎', '♜︎', '♝︎']
+const PIECE_FOR_GROUP = ['♛︎', '♜︎', '♝︎', '♞︎']
 
 function Section({ index, children }: { index: number; children: ReactNode }) {
   const ref = useReveal<HTMLElement>(0.15)

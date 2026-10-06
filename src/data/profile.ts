@@ -123,8 +123,9 @@ export const openSource = {
 
 export const skills: { group: string; items: string[] }[] = [
   { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'SQL', 'HTML', 'CSS'] },
-  { group: 'Frameworks', items: ['React', 'Node.js', 'Express', 'Django'] },
-  { group: 'Data', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firebase'] },
+  { group: 'Frameworks', items: ['React', 'Node.js', 'Express', 'Django', 'Tailwind CSS'] },
+  { group: 'Data', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firebase', 'Prisma'] },
+  { group: 'Tools', items: ['Git', 'GitHub Actions', 'Docker', 'Vitest'] },
 ]
 
 export const education = {
