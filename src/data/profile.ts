@@ -3,7 +3,7 @@
 export const profile = {
   name: 'Rishika Purbey',
   role: 'Software Developer',
-  tagline: 'I build full-stack products that feel considered, from the database schema to the last hover state.',
+  tagline: 'I’m a full-stack developer who thinks a few moves ahead, from data models to the details users feel.',
   location: 'Siliguri, India',
   email: 'rishikapurbey712@gmail.com',
   links: {
