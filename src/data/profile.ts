@@ -7,6 +7,8 @@ export const profile = {
   email: 'rishikapurbey712@gmail.com',
   links: {
     github: 'https://github.com/Rishikapurbey',
+    linkedin: 'https://www.linkedin.com/in/rishika-purbey-464a4025b',
+    x: 'https://x.com/RishikaPurbey',
   },
   // Drop the PDF into public/ and set its path here, e.g. '/Rishika-Purbey-Resume.pdf'.
   resume: null as string | null,
@@ -14,7 +16,9 @@ export const profile = {
 
 export const contacts = [
   { label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
+  { label: 'LinkedIn', value: 'in/rishika-purbey', href: profile.links.linkedin },
   { label: 'GitHub', value: 'github.com/Rishikapurbey', href: profile.links.github },
+  { label: 'X', value: '@RishikaPurbey', href: profile.links.x },
 ]
 
 export const about = {
