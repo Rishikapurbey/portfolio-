@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal portfolio of Rishika Purbey, designed as a cinematic scroll story: opening titles, scenes that reveal as you scroll, and projects presented as film posters.
+Personal portfolio of Rishika Purbey, designed around a game of chess: an animated board in the hero, sections named after moves, and a score sheet that follows you down the page.
 
 ## Stack
 

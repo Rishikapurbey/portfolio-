@@ -1,113 +1,167 @@
-import { Intro } from './components/Intro'
-import { Nav } from './components/Nav'
-import { Poster } from './components/Poster'
-import { Scene } from './components/Scene'
+import { useEffect, useState, type ReactNode } from 'react'
 import { about, education, experience, openSource, profile, projects, skills } from './data/profile'
+import { useReveal } from './hooks/useReveal'
+import { Board } from './components/Board'
+
+const SECTIONS = [
+  { id: 'ch-opening', move: '1. e4', name: 'The Opening' },
+  { id: 'ch-development', move: '2. Nf3', name: 'Development' },
+  { id: 'ch-castle', move: '3. O-O', name: 'Castled' },
+  { id: 'ch-middlegame', move: '4. Rd1', name: 'Middlegame' },
+  { id: 'ch-pieces', move: '5. Qe2', name: 'The Pieces' },
+  { id: 'ch-endgame', move: '6. ?', name: 'Your Move' },
+]
+
+const PIECE_FOR_GROUP = ['♛︎', '♜︎', '♝︎']
+
+function Section({ index, children }: { index: number; children: ReactNode }) {
+  const ref = useReveal<HTMLElement>(0.15)
+  const s = SECTIONS[index]
+  return (
+    <section id={s.id} ref={ref} className="ch-section ch-reveal" aria-labelledby={`${s.id}-t`}>
+      <p className="ch-move">{s.move}</p>
+      <h2 id={`${s.id}-t`}>{s.name}</h2>
+      {children}
+    </section>
+  )
+}
 
 export default function App() {
+  const [current, setCurrent] = useState(SECTIONS[0].id)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setCurrent(e.target.id)),
+      { rootMargin: '-45% 0px -50% 0px' },
+    )
+    SECTIONS.forEach((s) => {
+      const el = document.getElementById(s.id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <>
-      <div className="grain" aria-hidden="true" />
-      <div className="vignette" aria-hidden="true" />
-      <Nav />
+    <div className="ch">
+      <header className="ch-hero">
+        <div className="ch-hero__text">
+          <p className="ch-eyebrow">White to move</p>
+          <h1>{profile.name}</h1>
+          <p className="ch-hero__role">{profile.role} · {experience[0].company}</p>
+          <p className="ch-hero__tagline">
+            Every move <em>considered</em>. {profile.tagline}
+          </p>
+          <a className="ch-btn" href="#ch-opening">Start the game ↓</a>
+        </div>
+        <Board />
+      </header>
 
-      <main id="top">
-        <Intro />
-
-        <Scene id="about" act="Act I" title="The Origin">
-          <div className="about">
-            <div className="about__text">
-              {about.paragraphs.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
-            <aside className="about__card">
-              <dl>
-                <dt>Education</dt>
-                <dd>
-                  {education.degree}
-                  <span>{education.school} · {education.year}</span>
-                </dd>
-                <dt>Off screen</dt>
-                <dd>{about.offScreen.join(' · ')}</dd>
-              </dl>
-            </aside>
-          </div>
-        </Scene>
-
-        <Scene id="work" act="Now showing" title="Selected Work">
-          <div className="posters">
-            {projects.map((p, i) => (
-              <Poster key={p.title} project={p} index={i} />
-            ))}
-          </div>
-        </Scene>
-
-        <Scene id="experience" act="Act II" title="The Journey">
-          <ol className="timeline">
-            {experience.map((role) => (
-              <li key={role.title} className="timeline__item">
-                <span className="timeline__period">{role.period}</span>
-                <h3 className="timeline__role">{role.title}</h3>
-                <p className="timeline__company">{role.company}</p>
+      <div className="ch-layout">
+        <aside className="ch-scoresheet" aria-label="Sections">
+          <p className="ch-scoresheet__title">Score sheet</p>
+          <ol>
+            {SECTIONS.map((s) => (
+              <li key={s.id} className={s.id === current ? 'is-current' : ''}>
+                <a href={`#${s.id}`}>
+                  <span>{s.move}</span>
+                  {s.name}
+                </a>
               </li>
             ))}
           </ol>
-        </Scene>
+        </aside>
 
-        <Scene id="open-source" act="Box office" title="Open Source">
-          <div className="stats">
-            {openSource.stats.map((s) => (
-              <div key={s.label} className="stat">
-                <span className="stat__value">{s.value}</span>
-                <span className="stat__label">{s.label}</span>
-              </div>
-            ))}
-          </div>
-          <ul className="repos">
-            {openSource.repos.map((r) => (
-              <li key={r.name}>
-                <span>{r.name}</span>
-                <span className="repos__dots" aria-hidden="true" />
-                <span>{r.prs} PRs</span>
-              </li>
-            ))}
-            <li className="repos__more">{openSource.remainder}</li>
-          </ul>
-        </Scene>
-
-        <Scene id="skills" act="Cast & crew" title="The Toolkit">
-          <div className="skills">
-            {skills.map((s) => (
-              <div key={s.group} className="skills__group">
-                <h3>{s.group}</h3>
-                <ul>
-                  {s.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </Scene>
-
-        <Scene id="contact" act="Final act" title="Let’s Make Something">
-          <div className="contact">
-            <p className="contact__lede">
-              Open to interesting problems, collaborations and conversations. The fastest way to reach me is email.
-            </p>
-            <a className="contact__email" href={`mailto:${profile.email}`}>{profile.email}</a>
-            <div className="contact__links">
-              <a className="btn" href={profile.links.github} target="_blank" rel="noreferrer">GitHub</a>
+        <main className="ch-main">
+          <Section index={0}>
+            <div className="ch-prose">
+              {about.paragraphs.map((p) => <p key={p}>{p}</p>)}
             </div>
-          </div>
-        </Scene>
-      </main>
+            <p className="ch-annotation">
+              <span>!!</span> {education.degree}, {education.school}, {education.year}.
+            </p>
+          </Section>
 
-      <footer className="footer">
-        <span className="footer__end">The End</span>
-        <span>Written, directed and built by {profile.name}</span>
-      </footer>
-    </>
+          <Section index={1}>
+            <div className="ch-projects">
+              {projects.map((p) => (
+                <article key={p.title} className={`ch-project ch-project--${p.theme}`}>
+                  <span className="ch-project__piece" aria-hidden="true">{p.theme === 'emerald' ? '♞︎' : '♝︎'}</span>
+                  <p className="ch-eyebrow">{p.genre}</p>
+                  <h3>{p.title}</h3>
+                  <p>{p.logline}</p>
+                  <ul>
+                    {p.highlights.map((h) => <li key={h}>{h}</li>)}
+                  </ul>
+                  <p className="ch-project__stack">{p.stack.join(' · ')}</p>
+                  <div className="ch-project__links">
+                    {p.live && <a className="ch-btn" href={p.live} target="_blank" rel="noreferrer">Play it live</a>}
+                    <a className="ch-btn ch-btn--ghost" href={p.source} target="_blank" rel="noreferrer">Source</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Section>
+
+          <Section index={2}>
+            <ol className="ch-timeline">
+              {experience.map((r) => (
+                <li key={r.title}>
+                  <span className="ch-timeline__period">{r.period}</span>
+                  <strong>{r.title}</strong>
+                  <span>{r.company}</span>
+                </li>
+              ))}
+            </ol>
+          </Section>
+
+          <Section index={3}>
+            <div className="ch-stats">
+              {openSource.stats.map((s) => (
+                <div key={s.label}>
+                  <strong>{s.value}</strong>
+                  <span>{s.label}</span>
+                </div>
+              ))}
+            </div>
+            <ul className="ch-repos">
+              {openSource.repos.map((r) => (
+                <li key={r.name}>
+                  <span>{r.name}</span>
+                  <span className="ch-repos__pips" aria-label={`${r.prs} pull requests`}>
+                    {Array.from({ length: r.prs }, (_, i) => <i key={i} />)}
+                  </span>
+                  <b>{r.prs}</b>
+                </li>
+              ))}
+            </ul>
+            <p className="ch-annotation"><span>+</span> {openSource.remainder}</p>
+          </Section>
+
+          <Section index={4}>
+            <div className="ch-pieces">
+              {skills.map((s, i) => (
+                <div key={s.group} className="ch-piece-card">
+                  <span aria-hidden="true">{PIECE_FOR_GROUP[i]}</span>
+                  <h3>{s.group}</h3>
+                  <p>{s.items.join(', ')}</p>
+                </div>
+              ))}
+            </div>
+            <p className="ch-annotation"><span>♟</span> Off the board: {about.offScreen.join(', ')}.</p>
+          </Section>
+
+          <Section index={5}>
+            <p className="ch-endgame">The board is set. It’s your move.</p>
+            <a className="ch-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+            <div className="ch-project__links">
+              <a className="ch-btn" href={`mailto:${profile.email}`}>Send a message</a>
+              <a className="ch-btn ch-btn--ghost" href={profile.links.github} target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </Section>
+        </main>
+      </div>
+
+      <footer className="ch-footer">1–0 · {profile.name}</footer>
+    </div>
   )
 }
