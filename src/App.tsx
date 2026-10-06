@@ -48,7 +48,7 @@ export default function App() {
         <div className="ch-hero__text">
           <p className="ch-eyebrow">White to move</p>
           <h1>{profile.name}</h1>
-          <p className="ch-hero__role">{profile.role} · {experience[0].company}</p>
+          <p className="ch-hero__role">{profile.role} · {experience[0].company} · {profile.location}</p>
           <p className="ch-hero__tagline">
             Every move <em>considered</em>. {profile.tagline}
           </p>
@@ -77,11 +77,17 @@ export default function App() {
 
         <main className="ch-main">
           <Section index={0}>
-            <div className="ch-prose">
-              {about.paragraphs.map((p) => <p key={p}>{p}</p>)}
+            <div className="ch-opening">
+              <div className="ch-prose">
+                {about.paragraphs.map((p) => <p key={p}>{p}</p>)}
+              </div>
+              <figure className="ch-portrait">
+                <img src={profile.photo} alt={profile.name} width={694} height={880} loading="lazy" />
+                <figcaption>♔&#xFE0E; The player</figcaption>
+              </figure>
             </div>
             <p className="ch-annotation">
-              <span>!!</span> {education.degree}, {education.school}, {education.year}.
+              <span>!!</span> {education.degree}, {education.school}, {education.year} · CGPA {education.cgpa}.
             </p>
           </Section>
 

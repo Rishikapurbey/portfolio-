@@ -4,6 +4,7 @@ export const profile = {
   name: 'Rishika Purbey',
   role: 'Software Developer',
   tagline: 'I build full-stack products that feel considered, from the database schema to the last hover state.',
+  location: 'Siliguri, India',
   email: 'rishikapurbey712@gmail.com',
   links: {
     github: 'https://github.com/Rishikapurbey',
@@ -12,6 +13,7 @@ export const profile = {
   },
   // Drop the PDF into public/ and set its path here, e.g. '/Rishika-Purbey-Resume.pdf'.
   resume: null as string | null,
+  photo: '/images/profile.jpg',
 }
 
 export const contacts = [
@@ -109,4 +111,5 @@ export const education = {
   degree: 'B.Tech, Computer Science & Engineering',
   school: 'Siliguri Institute of Technology',
   year: '2026',
+  cgpa: '7.58',
 }
