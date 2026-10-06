@@ -53,7 +53,7 @@ export default function App() {
             Every move <em>considered</em>. {profile.tagline}
           </p>
           <div className="ch-hero__actions">
-            <a className="ch-btn" href="#ch-opening">Start the game ↓</a>
+            <a className="ch-btn" href="#ch-opening">Start the game <span className="ch-btn__arrow" aria-hidden="true">↓</span></a>
             <a className="ch-btn ch-btn--ghost" href="#ch-record">Résumé</a>
           </div>
         </div>
