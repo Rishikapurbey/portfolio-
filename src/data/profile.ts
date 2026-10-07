@@ -12,7 +12,7 @@ export const profile = {
     x: 'https://x.com/RishikaPurbey',
   },
   // Drop the PDF into public/ and set its path here, e.g. '/Rishika-Purbey-Resume.pdf'.
-  resume: null as string | null,
+  resume: '/Rishika-Purbey-Resume.pdf' as string | null,
   photo: '/images/profile.jpg',
 }
 
