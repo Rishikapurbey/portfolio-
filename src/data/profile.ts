@@ -25,7 +25,7 @@ export const contacts = [
 
 export const about = {
   paragraphs: [
-    'I’m a software developer at Ralakde Enterprise and a 2026 Computer Science graduate from Siliguri Institute of Technology.',
+    'I’m a software developer at Ralakde Enterprises and a 2026 Computer Science graduate from Siliguri Institute of Technology.',
     'I like owning a feature end to end: modelling the data, writing the API, building the interface, and testing the parts that would hurt if they broke. Strong fundamentals in data structures and algorithms keep the code honest.',
   ],
   offScreen: ['Chess', 'Badminton', 'DSA puzzles'],
@@ -82,8 +82,8 @@ export type Role = {
 }
 
 export const experience: Role[] = [
-  { title: 'Software Development Engineer', company: 'Ralakde Enterprise', period: 'Oct 2026 — Present' },
-  { title: 'Full Stack Developer Intern', company: 'Ralakde Enterprise', period: 'Jul 2026 — Oct 2026' },
+  { title: 'Software Development Engineer', company: 'Ralakde Enterprises', period: 'Oct 2026 — Present' },
+  { title: 'Full Stack Developer Intern', company: 'Ralakde Enterprises', period: 'Jul 2026 — Oct 2026' },
 ]
 
 export const openSource = {
