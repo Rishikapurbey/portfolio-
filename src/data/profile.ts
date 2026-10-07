@@ -88,7 +88,7 @@ export const experience: Role[] = [
 
 export const openSource = {
   stats: [
-    { value: '37', label: 'Merged pull requests' },
+    { value: '38', label: 'Merged pull requests' },
     { value: '12', label: 'Open-source projects' },
     { value: '#49', label: 'NSoC ’26, of 1,139' },
     { value: 'Top 3%', label: 'GSSoC ’26, 1,144 of 47,923' },
