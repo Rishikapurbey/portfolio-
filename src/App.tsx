@@ -5,13 +5,13 @@ import { Board } from './components/Board'
 import { MobileNav } from './components/MobileNav'
 
 const SECTIONS = [
-  { id: 'ch-opening', move: '1. e4', name: 'The Opening' },
-  { id: 'ch-development', move: '2. Nf3', name: 'Development' },
-  { id: 'ch-castle', move: '3. O-O', name: 'Castled' },
-  { id: 'ch-middlegame', move: '4. Rd1', name: 'Middlegame' },
-  { id: 'ch-pieces', move: '5. Qe2', name: 'The Pieces' },
-  { id: 'ch-record', move: '6. Bb3', name: 'Game Record' },
-  { id: 'ch-endgame', move: '7. ?', name: 'Your Move' },
+  { id: 'ch-opening', move: '2. Nf3', name: 'The Opening' },
+  { id: 'ch-development', move: '3. Bc4', name: 'Development' },
+  { id: 'ch-castle', move: '4. O-O', name: 'Castled' },
+  { id: 'ch-middlegame', move: '5. Re1', name: 'Middlegame' },
+  { id: 'ch-pieces', move: '6. Qe2', name: 'The Pieces' },
+  { id: 'ch-record', move: '7. Bb3', name: 'Game Record' },
+  { id: 'ch-endgame', move: '8. ?', name: 'Your Move' },
 ]
 
 const PIECE_FOR_GROUP = ['♛︎', '♜︎', '♝︎', '♞︎']
