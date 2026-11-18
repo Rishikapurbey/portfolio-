@@ -98,7 +98,7 @@ export const openSource = {
     { name: 'RankerHub', prs: 9 },
     { name: 'LinkID', prs: 5 },
   ],
-  remainder: '9 more PRs across 9 other projects',
+  remainder: '10 more PRs across 9 other projects',
   highlights: [
     {
       kind: 'Security',
