@@ -28,6 +28,7 @@ a {
   --c-dark: #769656;
   --c-green: #4e7a37;
   --c-gold: #c99a2e;
+  --c-gold-text: #876410;
   --c-serif: 'Instrument Serif', Georgia, serif;
   --c-sans: 'Inter', system-ui, sans-serif;
   --c-gutter: clamp(16px, 5vw, 64px);
@@ -320,7 +321,7 @@ body {
 .ch-move {
   margin: 0;
   font-weight: 600;
-  color: var(--c-gold);
+  color: var(--c-gold-text);
 }
 
 .ch-section h2 {
